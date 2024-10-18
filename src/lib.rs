@@ -144,19 +144,6 @@ pub struct DeleteIcebergOrder {
     pub trader_identifier:i64,
     pub iceberg_identifier: i64, 
 }
-
-
-#[derive(Debug, Deserialize, Serialize,Clone)]
-pub struct MarketConf {
-    pub exchange: String,
-    pub market_name: String,
-    pub contract : i32,
-    pub tick_size: i32,
-    pub tick_value: i32,
-    pub quotation: String,
-    
-}
-
 #[derive(Debug, Deserialize, Serialize,Clone)]
 pub struct TraderOrderStruct {
     pub market: String,
@@ -694,4 +681,16 @@ pub struct TraderBalance {
 pub struct Number {
     
     pub number:u32,
+}
+#[derive(Debug, Deserialize, Serialize,Clone)]
+pub struct MarketConf {
+    pub exchange: String,
+    pub market_name: String,
+    pub contract : i32,
+    pub tick_size: i32,
+    pub tick_value: i32,
+    pub margin_perc:i32,
+    pub maintenance_margin_perc_for_margin_call:i32,
+    pub maintenance_margin_perc_with_margin:i32,
+    pub quotation: String,  
 }
