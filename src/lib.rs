@@ -441,18 +441,35 @@ pub struct OB {
     pub ask: BTreeMap<i32, i32>,
 }
 #[derive(Debug, Deserialize, Serialize,Clone)]
+pub struct PriceLevel {
+    pub price: i32,
+    pub quantity: i32,
+}
+#[derive(Debug, Deserialize, Serialize,Clone)]
 pub struct FullOB {
     pub unix_time: i64,
     pub market:String,
-    pub bid: MBPData,
-    pub ask: MBPData,
+    pub bid: Vec<PriceLevel>,//MBPData
+    pub ask: Vec<PriceLevel>,//MBPData
 }
+
 #[derive(Debug, Deserialize, Serialize,Clone)]
 pub struct FullInterest {
     pub unix_time: i64,
     pub market:String,
-    pub long: InterestTree,
-    pub short: InterestTree,
+    pub long: Vec<PriceLevel>, //InterestTree
+    pub short: Vec<PriceLevel>,//InteresTree
+}
+impl InterestTree {
+    pub fn to_vec(&self) -> Vec<PriceLevel> {
+        self.interest
+            .iter()
+            .map(|(&price, &quantity)| PriceLevel {
+                price,
+                quantity,
+            })
+            .collect()
+    }
 }
 
 #[derive(Debug, Deserialize, Serialize,Clone)]
@@ -667,6 +684,8 @@ pub struct BrokerConfigDedicaced {
 #[derive(Debug, Deserialize, Serialize,Clone)]
 pub struct PaidCommission {
     pub unix_time: i64, 
+    pub broker_identifier:String,
+    pub trader_identifier:i64,
     pub commission_amount:i32,
     pub c_type:String,
 }
