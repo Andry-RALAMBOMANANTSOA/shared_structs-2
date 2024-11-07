@@ -334,7 +334,7 @@ pub struct PositionStruct {
     pub trader_identifier: i64,
     pub position_side: OrderSide,
     pub position_quantity: i32,
-    pub price: i32,
+    pub opening_price: i32,
 }
 #[derive(Debug, Deserialize, Serialize,Clone)]
 pub struct ClosePositionStruct {
@@ -346,7 +346,7 @@ pub struct ClosePositionStruct {
     pub trader_identifier: i64,
     pub position_side: OrderSide,
     pub position_quantity: i32,
-    pub initial_price: i32,
+    pub opening_price: i32,
     pub closing_price: i32,
 }
 
